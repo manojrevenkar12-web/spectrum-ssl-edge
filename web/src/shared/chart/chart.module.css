@@ -1,0 +1,10 @@
+.figure { margin: 0; display: grid; gap: var(--space-3); }
+.svg { width: 100%; max-width: 760px; height: auto; display: block; overflow: visible; font-family: var(--font-ui); }
+.axis { stroke: var(--line); }
+.grid { stroke: var(--line); stroke-dasharray: 2 4; }
+.tick { fill: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
+.axisTitle { fill: var(--ink-soft); font-size: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); list-style: none; padding: 0; margin: 0; font-family: var(--font-ui); font-size: var(--text-s); }
+.legend li { display: inline-flex; align-items: center; gap: var(--space-2); }
+.swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.caption { font-size: var(--text-s); color: var(--ink-soft); max-width: var(--measure); }

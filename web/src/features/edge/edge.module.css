@@ -1,0 +1,14 @@
+.chain { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; max-width: 760px; }
+.step { display: grid; grid-template-columns: 28px 1fr auto; gap: var(--space-3); align-items: start; padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+.node { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ink); margin-top: 6px; background: var(--surface); }
+.stepTitle { font-family: var(--font-ui); font-weight: 650; }
+.stepText { color: var(--ink-soft); font-size: var(--text-s); }
+.verdict { font-family: var(--font-ui); font-variant-numeric: tabular-nums; font-weight: 650; text-align: right; }
+.ok { color: var(--good); }
+.no { color: var(--bad); }
+.latency { display: grid; gap: var(--space-2); max-width: 640px; font-family: var(--font-ui); font-size: var(--text-s); }
+.latRow { display: grid; grid-template-columns: 180px 1fr 80px; gap: var(--space-3); align-items: center; }
+.latBar { height: 10px; border-radius: 5px; background: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: var(--space-5); font-family: var(--font-ui); }
+.fact b { display: block; font-size: var(--text-l); font-variant-numeric: tabular-nums; }
+.fact span { color: var(--ink-soft); font-size: var(--text-s); }

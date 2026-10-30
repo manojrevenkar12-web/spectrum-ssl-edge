@@ -1,0 +1,19 @@
+[package]
+name = "sse-edge"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Integer-only inference for the spectrum-ssl-edge signal classifier: no dependencies, no allocation per window"
+license = "MIT"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = true
+panic = "abort"
+
+[[bin]]
+name = "sse-edge"
+path = "src/main.rs"

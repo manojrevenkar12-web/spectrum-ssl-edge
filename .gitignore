@@ -1,0 +1,14 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+/data/
+/runs/
+/edge-rs/target/
+/web/node_modules/
+/web/dist/
+/web/test-results/
+*.onnx
+!reports/**
+.env*
+/web/public/results.json

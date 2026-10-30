@@ -1,0 +1,10 @@
+.scroll { overflow-x: auto; max-width: 100%; }
+.table { border-collapse: collapse; font-family: var(--font-ui); font-size: var(--text-s); min-width: 100%; }
+.table caption { text-align: left; color: var(--ink-soft); padding-bottom: var(--space-2); font-family: var(--font-prose); position: sticky; left: 0; max-width: min(var(--measure), calc(100vw - 2 * var(--space-4))); }
+.table th, .table td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.table th:first-child, .table td:first-child { text-align: left; }
+.table thead th { color: var(--ink-soft); font-weight: 600; }
+.best { font-weight: 750; }
+.barCell { display: inline-grid; grid-template-columns: 56px 3.2em; align-items: center; gap: var(--space-2); }
+.bar { height: 6px; border-radius: 3px; background: var(--sunken); position: relative; overflow: hidden; }
+.barFill { position: absolute; inset: 0 auto 0 0; background: var(--ink); border-radius: 3px; }

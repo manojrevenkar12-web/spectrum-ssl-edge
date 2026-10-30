@@ -1,0 +1,39 @@
+[project]
+name = "spectrum-ssl-edge"
+version = "0.1.0"
+description = "Self-supervised RF signal recognition that holds up under shift and runs in int8 on the edge"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",
+  "scipy>=1.13",
+  "torch>=2.4",
+  "pyyaml>=6",
+  "onnx>=1.17",
+  "onnxruntime>=1.20",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+sse = "sse.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: trains models (minutes)"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+ignore = ["E501", "E741"]

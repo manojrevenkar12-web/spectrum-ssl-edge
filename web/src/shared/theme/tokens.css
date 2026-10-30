@@ -1,0 +1,108 @@
+/*
+ * Tokens. A results page for people who read spectra: a cool paper ground so the waterfall is the
+ * only dark, dense object on the page; cobalt marks what the model recognised, burnt orange what it
+ * flagged as never seen. Source Serif 4 for the argument, Archivo for numbers and controls.
+ */
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource-variable/archivo';
+
+:root {
+  --font-prose: 'Source Serif 4 Variable', Georgia, serif;
+  --font-ui: 'Archivo Variable', system-ui, sans-serif;
+
+  --paper: #eceef1;
+  --surface: #f8f9fa;
+  --sunken: #e1e5ea;
+  --ink: #121821;
+  --ink-soft: #4a5563;
+  --line: #c6cdd6;
+  --focus: #2b59c3;
+
+  --known: #2b59c3;
+  --novel: #b83d0b;
+  --truth: #121821;
+  --good: #1f6b45;
+  --bad: #a3311f;
+
+  /* one colour per method, distinguishable in greyscale by lightness */
+  --m-supervised: #121821;
+  --m-ssl-lab-probe: #8fa3c7;
+  --m-ssl-lab-finetune: #2b59c3;
+  --m-ssl-field-probe: #e2a37a;
+  --m-ssl-field-finetune: #b83d0b;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 40px;
+  --space-7: 64px;
+  --space-8: 112px;
+
+  --radius-s: 4px;
+  --radius-m: 10px;
+
+  --text-xs: 0.75rem;
+  --text-s: 0.875rem;
+  --text-m: 1.0625rem;
+  --text-l: 1.375rem;
+  --text-xl: clamp(1.75rem, 3.4vw, 2.75rem);
+
+  --measure: 66ch;
+  --page: 1180px;
+  --tap: 44px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1318;
+    --surface: #161b22;
+    --sunken: #0a0d11;
+    --ink: #e6e9ee;
+    --ink-soft: #a2adba;
+    --line: #2c343f;
+    --focus: #8fb0ff;
+    --known: #8fb0ff;
+    --novel: #ff9b6a;
+    --truth: #e6e9ee;
+    --good: #6fd19b;
+    --bad: #ff8d7a;
+    --m-supervised: #e6e9ee;
+    --m-ssl-lab-probe: #5d6f91;
+    --m-ssl-lab-finetune: #8fb0ff;
+    --m-ssl-field-probe: #9a6447;
+    --m-ssl-field-finetune: #ff9b6a;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-prose);
+  font-size: var(--text-m);
+  line-height: 1.55;
+}
+h1, h2, h3 { font-family: var(--font-ui); font-weight: 650; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+button, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: var(--radius-s); }
+.num { font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.skeleton {
+  background: linear-gradient(90deg, var(--sunken) 30%, var(--surface) 50%, var(--sunken) 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: var(--radius-s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

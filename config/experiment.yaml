@@ -1,0 +1,60 @@
+# What the experiment runs. `full` produces the committed reports; `quick` is the CI smoke run (same
+# code paths, small sizes, numbers not comparable).
+length: 256            # samples per window
+seeds: [0, 1, 2]       # repeats for the label-budget runs (different labelled subsets and inits)
+
+profiles:
+  full:
+    train_per_class: 1000      # labelled bench windows available
+    val_per_class: 200         # bench windows for temperature scaling only
+    test_per_class: 300        # per domain and class
+    novel_per_class: 300       # per novel class, for the open-set test
+    ssl_pool: 24000            # unlabelled windows for pretraining
+    budgets: [10, 100, 1000]   # labels per class
+    supervised_epochs: 15
+    min_steps: 400
+    ssl_epochs: 15
+    ensemble: 3
+    scenes: 40                 # per scene domain (config/scene.yaml)
+  quick:
+    train_per_class: 60
+    val_per_class: 20
+    test_per_class: 20
+    novel_per_class: 20
+    ssl_pool: 600
+    budgets: [5, 60]
+    supervised_epochs: 2
+    min_steps: 20
+    ssl_epochs: 1
+    ensemble: 2
+    scenes: 3
+
+train:
+  batch: 128
+  lr: 0.002
+  weight_decay: 0.0001
+  finetune_encoder_lr: 0.0005
+  ssl_batch: 256
+  ssl_lr: 0.002
+  ssl_temperature: 0.2
+  probe_steps: 600
+
+augment:
+  # light: supervised training and fine-tuning
+  light: {phase: true, shift: 32}
+  # strong: the two views for contrastive pretraining
+  strong: {phase: true, shift: 32, cfo: 0.005, crop: [128, 256], noise_snr_db: [0, 20], dropout: [0.0, 0.1]}
+
+# Where the unlabelled pretraining windows come from.
+#   lab:   the bench only (isolates what self-supervision itself adds)
+#   field: unlabelled recordings from deployed receivers (multipath, hardware, irregular). Oversampling
+#          and the held-out domain are never in any pretraining pool.
+ssl_pools:
+  lab: [lab]
+  field: [lab, multipath, hardware, irregular]
+
+# Open-set recognition: classes never seen in training, grouped by how close they are to a known class.
+novel_groups:
+  near: [OQPSK, 32QAM]
+  far: [CSS, CW]
+openset_domains: [lab, hardware]

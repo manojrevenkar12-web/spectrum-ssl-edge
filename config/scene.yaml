@@ -1,0 +1,11 @@
+# The wideband scene test (`sse edge` runs it with the int8 model).
+domains: [lab, multipath, hardware]
+novel_share: 0.25          # share of emitters drawn from the novel classes
+detector:
+  pfa: 0.000001            # false-alarm probability per channel and frame in white noise (burst start)
+  pfa_hold: 0.01           # looser threshold a started burst must stay above (hysteresis)
+  edge_bins: 2             # bins ignored at each channel edge
+  smooth_frames: 3         # channel energy averaged over this many frames
+  min_frames: 6            # shortest burst reported
+  gap_frames: 6            # fading holes filled inside a burst
+novelty_tpr: 0.95          # the Mahalanobis threshold keeps this share of bench detections as known

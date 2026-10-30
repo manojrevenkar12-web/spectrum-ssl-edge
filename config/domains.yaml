@@ -1,0 +1,59 @@
+# Each domain is a distribution of conditions: every window draws its own parameters uniformly from
+# these ranges. Units: snr_db in dB; cfo in cycles/sample; phase_noise in rad/sample (random-walk std);
+# iq_amp_db in dB; iq_phase_deg in degrees; dc relative to signal RMS; pa_backoff_db is the Rapp PA's
+# saturation above signal RMS (null = linear); multipath_taps = number of taps (null = none),
+# multipath_decay in samples, multipath_k_db = Rician K of the first tap; burst_occupancy = share of the
+# window the emitter is on (null = always on); dropout = share of samples lost in 1-4 gaps;
+# valid = number of samples recorded before the window ends (null = all).
+
+lab:  # the bench where labelled data is recorded
+  snr_db: [-4, 20]
+  sps: [8]
+  cfo: [-0.002, 0.002]
+  phase_noise: [0.0, 0.002]
+  iq_amp_db: [0.0, 0.5]
+  iq_phase_deg: [0.0, 2.0]
+  dc: [0.0, 0.02]
+
+multipath:  # urban propagation: delayed copies of the signal
+  snr_db: [-4, 20]
+  sps: [8]
+  cfo: [-0.002, 0.002]
+  phase_noise: [0.0, 0.002]
+  iq_amp_db: [0.0, 0.5]
+  iq_phase_deg: [0.0, 2.0]
+  dc: [0.0, 0.02]
+  multipath_taps: [2, 5]
+  multipath_decay: [1.0, 3.0]
+  multipath_k_db: [-3, 6]
+
+hardware:  # cheaper transmitters and a different receiver
+  snr_db: [-4, 20]
+  sps: [8]
+  cfo: [-0.01, 0.01]
+  phase_noise: [0.002, 0.01]
+  iq_amp_db: [0.5, 2.0]
+  iq_phase_deg: [2.0, 10.0]
+  dc: [0.02, 0.1]
+  pa_backoff_db: [1.0, 4.0]
+
+oversampling:  # emitters at symbol rates the bench never recorded
+  snr_db: [-4, 20]
+  sps: [5, 6, 11, 12]
+  cfo: [-0.002, 0.002]
+  phase_noise: [0.0, 0.002]
+  iq_amp_db: [0.0, 0.5]
+  iq_phase_deg: [0.0, 2.0]
+  dc: [0.0, 0.02]
+
+irregular:  # bursty emitters, dropped samples, short captures
+  snr_db: [-4, 20]
+  sps: [8]
+  cfo: [-0.002, 0.002]
+  phase_noise: [0.0, 0.002]
+  iq_amp_db: [0.0, 0.5]
+  iq_phase_deg: [0.0, 2.0]
+  dc: [0.0, 0.02]
+  burst_occupancy: [0.3, 0.8]
+  dropout: [0.0, 0.1]
+  valid: [96, 256]

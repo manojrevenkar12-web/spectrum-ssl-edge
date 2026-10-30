@@ -1,0 +1,18 @@
+# Deployment: a low-cost USB SDR mounted in a patrol vehicle, scanning handheld and IoT transmitters
+# in a dense city centre. The cheap receiver brings oscillator offset, IQ imbalance, DC leakage and
+# occasional USB sample drops; battery transmitters run their amplifiers close to saturation, signals
+# arrive over short urban multipath, and emitters key up in bursts at varied symbol rates.
+domain:
+  snr_db: [-6, 18]
+  sps: [4, 8, 12]
+  cfo: [-0.01, 0.01]
+  phase_noise: [0, 0.006]
+  iq_amp_db: [0.3, 1.5]
+  iq_phase_deg: [1, 6]
+  dc: [0.01, 0.08]
+  pa_backoff_db: [3, 9]
+  multipath_taps: [2, 5]
+  multipath_decay: [0.5, 2.5]
+  multipath_k_db: [-3, 8]
+  burst_occupancy: [0.5, 1]
+  dropout: [0, 0.05]

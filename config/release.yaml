@@ -1,0 +1,22 @@
+# The release gate (`sse gate`), read against reports/results.json.
+#
+# `targets` were written before the first full run (2026-10-30) as what a release should reach. Two
+# were missed: bench accuracy at SNR >= 12 dB (91.7%) and far-novel AUROC (0.895). They are reported,
+# not gated, until a run meets them; they are not lowered to make the gate pass.
+#
+# `floors` are what CI enforces: regressions below the first full run's measured level, with a margin
+# for seed noise, plus the exactness checks that have no margin.
+targets:
+  lab_accuracy_high_snr: 0.95
+  far_ood_auroc: 0.90
+
+floors:
+  lab_accuracy_min: 0.85            # deployed model, bench test set, all SNRs (first run: 0.877)
+  lab_accuracy_high_snr_min: 0.89   # same, SNR >= 12 dB (first run: 0.917)
+  ece_lab_max: 0.03                 # after temperature scaling (first run: 0.016)
+  far_ood_auroc_min: 0.85           # best open-set score, far-novel classes, bench (first run: 0.895)
+  int8_agreement_min: 0.98          # int8 top-1 equals float top-1 on the bench (first run: 0.991)
+  rust_bit_exact: true              # Rust runtime equals the numpy int8 reference bit for bit
+  onnx_max_abs_diff: 0.001          # ONNX Runtime float logits vs PyTorch
+  edge_macs_max: 3000000            # multiply-accumulates per window
+  edge_weights_bytes_max: 131072    # int8 weights + int32 biases
