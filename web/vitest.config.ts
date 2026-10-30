@@ -3,5 +3,5 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react()],
-  test: { environment: 'happy-dom', include: ['src/**/*.test.tsx', 'src/**/*.test.ts'] },
+  test: { environment: 'happy-dom', include: ['src/**/*.test.tsx', 'src/**/*.test.ts'], setupFiles: ['src/test-setup.ts'] },
 });
